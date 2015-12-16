@@ -32,8 +32,8 @@ RUN sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf && \
 RUN	mysql_install_db --user=mysql
 RUN	mysqld_safe &
 RUN	mysqladmin --silent --wait=30 ping || exit 1
-RUN	mysql -uroot --execute=\"CREATE USER 'admin'@'%' IDENTIFIED BY 'admin';\"
-RUN	mysql -uroot --execute=\"GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION;\"
+RUN	mysql -uroot --execute="CREATE USER 'admin'@'%' IDENTIFIED BY 'admin';"
+RUN	mysql -uroot --execute="GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION;"
 RUN mysqladmin reload
 
 # define mountable volumes
