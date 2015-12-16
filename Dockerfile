@@ -1,23 +1,12 @@
-
 # obtain latest alpine linux image
-FROM alpine:latest
+FROM xtremxpert/docker-alpine:latest
 
-ENV LANG="fr_CA.UTF-8" \
-	LC_ALL="fr_CA.UTF-8" \
-	LANGUAGE="fr_CA.UTF-8" \
-	TZ="America/Toronto" \
-	TERM="xterm"
 # upgrade
 RUN apk -U upgrade && \
 	apk --update add \
-	tzdata \
-		openntpd \
-		nano \
-		mc \
 		mariadb \ 
 		mariadb-client \
 	&& \
- 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
 	rm -fr /var/lib/apk/* && \
 	rm -fr /var/cache/apk/*
 	
@@ -34,7 +23,7 @@ RUN	mysqld_safe &
 RUN	mysqladmin --silent --wait=30 ping || exit 1
 RUN	mysql -uroot --execute="CREATE USER 'admin'@'%' IDENTIFIED BY 'admin';"
 RUN	mysql -uroot --execute="GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' WITH GRANT OPTION;"
-RUN mysqladmin reload
+RUN	mysqladmin reload
 
 # define mountable volumes
 VOLUME ["/var/lib/mysql"]
