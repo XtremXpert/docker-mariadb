@@ -5,7 +5,6 @@ ENV MYSQL_USER="XtremXpert"
 ENV MYSQL_PASSWORD="NotAnEasyOne"
 ENV MYSQL_ROOT_PASSWORD="EvenAnHarderOne"
 
-COPY files/start.sh /start.sh
 COPY files/init_mariadb.sh /init_mariadb.sh
 
 # upgrade
@@ -35,4 +34,4 @@ VOLUME ["/var/lib/mysql"]
 EXPOSE 3306
 
 # create entry point
-CMD ["/start.sh"]
+CMD ["mysqld_safe"]
