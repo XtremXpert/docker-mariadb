@@ -13,6 +13,7 @@ fi
 echo "Initializing Root password ... "
 /usr/bin/mysqld_safe --log-error=/tmp/init.log --skip-networking --skip-grant-tables &> /dev/null &
 sleep 2
+echo "start1"
 echo -e "\n\n${MYSQL_ROOT_PASSWORD}\n${MYSQL_ROOT_PASSWORD}\n\n\nn\n\n\n" | mysql_secure_installation &> /dev/null
 
 if [[ -n ${MYSQL_DATABASE} ]]; then
