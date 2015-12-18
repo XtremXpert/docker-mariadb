@@ -3,9 +3,9 @@ DATADIR="$(mysqld --verbose --help 2>/dev/null | awk '$1 == "datadir" { print $2
 
 if [ ! -d "$DATADIR/mysql" ]; then
 
-    mysql_install_db --user=mysql --datadir="/data/db/mysql"
+    mysql_install_db --user=mysql
 
-    /usr/bin/mysqld_safe --defaults-file=/data/conf/my.cnf &
+    /usr/bin/mysqld_safe  &
     sleep 10s
 
 		#Changed mysql_secure_installation script to running only the commands.
