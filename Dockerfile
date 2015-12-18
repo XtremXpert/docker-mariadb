@@ -5,7 +5,7 @@ ENV MYSQL_USER="XtremXpert"
 ENV MYSQL_PASSWORD="NotAnEasyOne"
 ENV MYSQL_ROOT_PASSWORD="EvenAnHarderOne"
 
-COPY docker-entrypoint.sh /
+COPY entrypoint.sh /
 
 # upgrade
 RUN apk -U upgrade && \
