@@ -24,8 +24,11 @@ if [ "$1" = 'mysqld' ]; then
 		mysql_install_db --user=mysql --datadir="$DATADIR" --rpm
 		echo 'Database initialized'
 
-		"$@" --skip-networking &
-		pid="$!"
+		#"$@" --skip-networking &
+		#pid="$!"
+		#Need to fix to mysqld_safe on alpine linux
+		mysqld_safe &
+
 
 		mysql=( mysql --protocol=socket -uroot )
 
