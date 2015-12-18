@@ -5,8 +5,6 @@ ENV MYSQL_USER="XtremXpert"
 ENV MYSQL_PASSWORD="NotAnEasyOne"
 ENV MYSQL_ROOT_PASSWORD="EvenAnHarderOne"
 
-COPY files/init_mariadb.sh /init_mariadb.sh
-
 # upgrade
 RUN apk -U upgrade && \
 	apk --update add \
@@ -30,8 +28,10 @@ RUN /init_mariadb.sh
 # define mountable volumes
 VOLUME ["/var/lib/mysql"]
 
+COPY docker-entrypoint.sh /
+
 # expose port
 EXPOSE 3306
 
 # create entry point
-CMD ["mysqld_safe"]
+CMD ["mysqld"]
