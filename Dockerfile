@@ -28,4 +28,6 @@ VOLUME ["/var/lib/mysql"]
 EXPOSE 3306
 
 # create entry point
+#ENTRYPOINT ["/docker-entrypoint.sh"]
+
 CMD ["bash"]
