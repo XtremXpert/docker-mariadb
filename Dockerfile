@@ -1,7 +1,11 @@
 # obtain latest alpine linux image
 FROM xtremxpert/docker-alpine:latest
 
-COPY files/entrypoint.sh /
+ENV DB_ROOT_PASS="toor" \
+    DB_USER="admin" \
+    DB_PASS="password"
+
+COPY files/start.sh /
 
 # upgrade
 RUN apk -U upgrade && \
@@ -30,4 +34,4 @@ EXPOSE 3306
 # create entry point
 #ENTRYPOINT ["/docker-entrypoint.sh"]
 
-CMD ["/bin/bash"]
+CMD ["/start.sh"]
